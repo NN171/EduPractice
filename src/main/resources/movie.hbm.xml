@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.example.summerpracticesecondyear.entities.Movie" table="movies">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="title" column="title" type="string"/>
+        <property name="genre" column="genre" type="string"/>
+        <property name="duration" column="duration" type="int"/>
+    </class>
+</hibernate-mapping>
