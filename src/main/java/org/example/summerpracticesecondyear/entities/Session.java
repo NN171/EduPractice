@@ -7,9 +7,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sessions")
-public class Session {
+public class Session extends BaseEntity {
 
-    private int id;
     private int movieId;
     private int roomId;
     private LocalDate sessionDate;
@@ -18,17 +17,6 @@ public class Session {
     private Movie movie;
 
     public Session() {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "session_id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Column(name = "movie_id")

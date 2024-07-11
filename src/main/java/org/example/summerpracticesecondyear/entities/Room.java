@@ -6,26 +6,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "rooms")
-public class Room {
+public class Room extends BaseEntity {
 
-    private int id;
     private int capacity;
     private String title;
     private List<Session> session;
     private List<Movie> movies;
 
     public Room() {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Column(name = "capacity")

@@ -4,26 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tickets")
-public class Ticket {
+public class Ticket extends BaseEntity {
 
-    private int id;
     private int userId;
     private int sessionId;
     private int seat;
     private Movie movie;
 
     public Ticket() {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ticket_id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Column(name = "user_id")

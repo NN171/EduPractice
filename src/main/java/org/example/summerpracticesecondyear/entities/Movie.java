@@ -5,8 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "movies")
-public class Movie {
-    private int id;
+public class Movie extends BaseEntity {
 
     private String title;
     private String genre;
@@ -14,17 +13,6 @@ public class Movie {
     private List<Room> rooms;
 
     public Movie() {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Column(name = "title")
