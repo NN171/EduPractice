@@ -6,8 +6,8 @@ import java.util.List;
 @Entity
 @Table(name = "movies")
 public class Movie {
-
     private int id;
+
     private String title;
     private String genre;
     private int duration;
