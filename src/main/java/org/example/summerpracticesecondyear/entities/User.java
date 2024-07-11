@@ -16,6 +16,13 @@ public class User extends BaseEntity {
     public User() {
     }
 
+    public User(String firstName, String lastName, String email, List<Ticket> ticket) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.ticket = ticket;
+    }
+
     @Column(name = "first_name")
     public String getFirstName() {
         return firstName;

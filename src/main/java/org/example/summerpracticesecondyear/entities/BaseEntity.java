@@ -1,9 +1,6 @@
 package org.example.summerpracticesecondyear.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public abstract class BaseEntity {
@@ -11,6 +8,7 @@ public abstract class BaseEntity {
     protected int id;
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;

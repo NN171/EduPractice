@@ -9,32 +9,21 @@ import java.time.LocalDateTime;
 @Table(name = "sessions")
 public class Session extends BaseEntity {
 
-    private int movieId;
-    private int roomId;
     private LocalDate sessionDate;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Movie movie;
+    private Room room;
 
     public Session() {
     }
 
-    @Column(name = "movie_id")
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
-    @Column(name = "room_id")
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public Session(LocalDate sessionDate, LocalDateTime startTime, LocalDateTime endTime, Movie movie, Room room) {
+        this.sessionDate = sessionDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.movie = movie;
+        this.room = room;
     }
 
     @Column(name = "session_date")
@@ -71,5 +60,14 @@ public class Session extends BaseEntity {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

@@ -6,30 +6,19 @@ import jakarta.persistence.*;
 @Table(name = "tickets")
 public class Ticket extends BaseEntity {
 
-    private int userId;
-    private int sessionId;
     private int seat;
+    private User user;
+    private Session session;
     private Movie movie;
 
     public Ticket() {
     }
 
-    @Column(name = "user_id")
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Column(name = "session_id")
-    public int getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(int sessionId) {
-        this.sessionId = sessionId;
+    public Ticket(User user, Session session, int seat, Movie movie) {
+        this.user = user;
+        this.session = session;
+        this.seat = seat;
+        this.movie = movie;
     }
 
     @Column(name = "seat_id")
@@ -48,5 +37,23 @@ public class Ticket extends BaseEntity {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 }

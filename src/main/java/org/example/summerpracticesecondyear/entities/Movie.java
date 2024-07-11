@@ -15,6 +15,13 @@ public class Movie extends BaseEntity {
     public Movie() {
     }
 
+    public Movie(String title, String genre, int duration, List<Room> rooms) {
+        this.title = title;
+        this.genre = genre;
+        this.duration = duration;
+        this.rooms = rooms;
+    }
+
     @Column(name = "title")
     public String getTitle() {
         return title;
