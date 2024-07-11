@@ -8,7 +8,6 @@ public abstract class BaseEntity {
     protected int id;
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
