@@ -21,7 +21,7 @@ public class Ticket extends BaseEntity {
         this.movie = movie;
     }
 
-    @Column(name = "seat_id")
+    @Column(name = "seat")
     public int getSeat() {
         return seat;
     }
@@ -39,7 +39,7 @@ public class Ticket extends BaseEntity {
         this.movie = movie;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     public User getUser() {
         return user;
     }
