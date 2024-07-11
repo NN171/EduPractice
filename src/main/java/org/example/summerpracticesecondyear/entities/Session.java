@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sessions")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Session extends BaseEntity {
 
     private LocalDate sessionDate;
@@ -54,6 +55,7 @@ public class Session extends BaseEntity {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "movie_id", referencedColumnName = "id")
     public Movie getMovie() {
         return movie;
     }
@@ -62,7 +64,8 @@ public class Session extends BaseEntity {
         this.movie = movie;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
     public Room getRoom() {
         return room;
     }

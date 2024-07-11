@@ -2,21 +2,22 @@ package org.example.summerpracticesecondyear.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User extends BaseEntity {
 
     private String firstName;
     private String lastName;
     private String email;
-    private List<Ticket> ticket;
+    private Set<Ticket> ticket;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, List<Ticket> ticket) {
+    public User(String firstName, String lastName, String email, Set<Ticket> ticket) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -50,12 +51,13 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    @OneToMany
-    public List<Ticket> getTicket() {
+    @OneToMany(mappedBy = "user", targetEntity = Ticket.class,
+    fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public Set<Ticket> getTicket() {
         return ticket;
     }
 
-    public void setTicket(List<Ticket> ticket) {
+    public void setTicket(Set<Ticket> ticket) {
         this.ticket = ticket;
     }
 }

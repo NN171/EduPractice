@@ -2,20 +2,22 @@ package org.example.summerpracticesecondyear.entities;
 
 import jakarta.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "movies")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Movie extends BaseEntity {
 
     private String title;
     private String genre;
     private int duration;
-    private List<Room> rooms;
+    private Set<Room> rooms;
 
     public Movie() {
     }
 
-    public Movie(String title, String genre, int duration, List<Room> rooms) {
+    public Movie(String title, String genre, int duration, Set<Room> rooms) {
         this.title = title;
         this.genre = genre;
         this.duration = duration;
@@ -50,11 +52,15 @@ public class Movie extends BaseEntity {
     }
 
     @ManyToMany
-    public List<Room> getRooms() {
+    @JoinTable(name = "rooms_movies",
+            joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "room_id",
+                    referencedColumnName = "id"))
+    public Set<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(List<Room> rooms) {
+    public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
 }

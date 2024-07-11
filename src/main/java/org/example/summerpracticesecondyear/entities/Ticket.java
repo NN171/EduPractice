@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tickets")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Ticket extends BaseEntity {
 
     private int seat;
@@ -30,7 +31,8 @@ public class Ticket extends BaseEntity {
         this.seat = seat;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "movie_id", referencedColumnName = "id")
     public Movie getMovie() {
         return movie;
     }
@@ -40,6 +42,7 @@ public class Ticket extends BaseEntity {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     public User getUser() {
         return user;
     }
@@ -48,7 +51,9 @@ public class Ticket extends BaseEntity {
         this.user = user;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "session_id", referencedColumnName = "id")
     public Session getSession() {
         return session;
     }
