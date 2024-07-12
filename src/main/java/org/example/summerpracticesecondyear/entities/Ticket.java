@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tickets")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Ticket extends BaseEntity {
 
     private int seat;

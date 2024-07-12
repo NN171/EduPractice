@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sessions")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Session extends BaseEntity {
 
     private LocalDate sessionDate;

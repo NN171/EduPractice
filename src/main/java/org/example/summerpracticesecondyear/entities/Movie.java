@@ -6,7 +6,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "movies")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Movie extends BaseEntity {
 
     private String title;

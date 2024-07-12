@@ -10,7 +10,8 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepo;
 
-    public long count() {
-        return ticketRepo.count();
+    public long count(long movieId) {
+        long count = ticketRepo.count();
+        return count;
     }
 }

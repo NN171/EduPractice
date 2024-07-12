@@ -6,7 +6,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "rooms")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Room extends BaseEntity {
 
     private int capacity;
