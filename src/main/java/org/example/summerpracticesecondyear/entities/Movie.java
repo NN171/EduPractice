@@ -2,7 +2,6 @@ package org.example.summerpracticesecondyear.entities;
 
 import jakarta.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "movies")
@@ -11,12 +10,12 @@ public class Movie extends BaseEntity {
     private String title;
     private String genre;
     private int duration;
-    private Set<Room> rooms;
+    private List<Room> rooms;
 
     public Movie() {
     }
 
-    public Movie(String title, String genre, int duration, Set<Room> rooms) {
+    public Movie(String title, String genre, int duration, List<Room> rooms) {
         this.title = title;
         this.genre = genre;
         this.duration = duration;
@@ -55,11 +54,11 @@ public class Movie extends BaseEntity {
             joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "room_id",
                     referencedColumnName = "id"))
-    public Set<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(Set<Room> rooms) {
+    public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
 }

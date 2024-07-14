@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/ticket")
 public class TicketController {
@@ -19,8 +21,8 @@ public class TicketController {
     }
 
     @GetMapping("/{id}")
-    public long getTicketsByMovieId(@PathVariable long movieId) {
-        return ticketService.count(movieId);
+    public long getTicketsByMovieId(@PathVariable int movieId) {
+        return ticketService.countByMovieId(movieId);
     }
 
 }

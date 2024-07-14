@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
-    @Query(value = "select count(t.id), t.movie.id from Ticket t " +
+    @Query(value = "select t.id from Ticket t " +
             "where t.movie.id = :movieId")
     List<Ticket> findByMovieId(@Param(value = "movieId")
                                int movieId);

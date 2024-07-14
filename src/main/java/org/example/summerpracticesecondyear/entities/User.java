@@ -2,7 +2,7 @@ package org.example.summerpracticesecondyear.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -11,12 +11,12 @@ public class User extends BaseEntity {
     private String firstName;
     private String lastName;
     private String email;
-    private Set<Ticket> ticket;
+    private List<Ticket> ticket;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, Set<Ticket> ticket) {
+    public User(String firstName, String lastName, String email, List<Ticket> ticket) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -52,11 +52,11 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", targetEntity = Ticket.class,
     fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Set<Ticket> getTicket() {
+    public List<Ticket> getTicket() {
         return ticket;
     }
 
-    public void setTicket(Set<Ticket> ticket) {
+    public void setTicket(List<Ticket> ticket) {
         this.ticket = ticket;
     }
 }
