@@ -9,16 +9,14 @@ import java.util.List;
 public class Room extends BaseEntity {
 
     private int capacity;
-    private String title;
     private List<Session> session;
     private List<Movie> movies;
 
     public Room() {
     }
 
-    public Room(int capacity, String title, List<Session> session, List<Movie> movies) {
+    public Room(int capacity, List<Session> session, List<Movie> movies) {
         this.capacity = capacity;
-        this.title = title;
         this.session = session;
         this.movies = movies;
     }
@@ -30,15 +28,6 @@ public class Room extends BaseEntity {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    @Column(name = "title")
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     @OneToMany(mappedBy = "room", targetEntity = Session.class,

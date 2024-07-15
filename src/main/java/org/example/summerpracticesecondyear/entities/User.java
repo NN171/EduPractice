@@ -64,7 +64,7 @@ public class User extends BaseEntity {
     }
 
     @ManyToMany
-    @JoinTable(name = "user_movie",
+    @JoinTable(name = "user_movies",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id",
                     referencedColumnName = "id"))

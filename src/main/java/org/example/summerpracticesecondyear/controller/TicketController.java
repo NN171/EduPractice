@@ -15,8 +15,9 @@ public class TicketController {
         this.ticketServiceImpl = ticketServiceImpl;
     }
 
-    @PutMapping("/{userId}/{movieId}")
+    @GetMapping("/{userId}/{movieId}")
     public double refundTicket(@PathVariable Long userId, @PathVariable Long movieId) {
-        return ticketServiceImpl.refundByUserId(userId, movieId);
+        ticketServiceImpl.refundByUserId(userId, movieId);
+        return ticketServiceImpl.findBalanceByUserId(userId);
     }
 }

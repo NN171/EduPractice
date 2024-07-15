@@ -10,5 +10,5 @@ public interface UserRepository extends BaseRepository<User, Long> {
 
     @Query(value = "select u.bonusBalance from User u " +
             "where u.id = :userId")
-    double getBonusBalance(@Param("userId") Long userId);
+    double findBalanceByUserId(@Param("userId") Long userId);
 }
