@@ -12,18 +12,20 @@ public class Session extends BaseEntity {
     private LocalDate sessionDate;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+    private double moviePrice;
     private Movie movie;
     private Room room;
 
     public Session() {
     }
 
-    public Session(LocalDate sessionDate, LocalDateTime startTime, LocalDateTime endTime, Movie movie, Room room) {
+    public Session(LocalDate sessionDate, LocalDateTime startTime, LocalDateTime endTime, Movie movie, Room room, double moviePrice) {
         this.sessionDate = sessionDate;
         this.startTime = startTime;
         this.endTime = endTime;
         this.movie = movie;
         this.room = room;
+        this.moviePrice = moviePrice;
     }
 
     @Column(name = "session_date")
@@ -33,6 +35,15 @@ public class Session extends BaseEntity {
 
     public void setSessionDate(LocalDate sessionDate) {
         this.sessionDate = sessionDate;
+    }
+
+    @Column(name = "movie_price")
+    public double getMoviePrice() {
+        return moviePrice;
+    }
+
+    public void setMoviePrice(double moviePrice) {
+        this.moviePrice = moviePrice;
     }
 
     @Column(name = "start_time")
@@ -53,7 +64,7 @@ public class Session extends BaseEntity {
         this.endTime = endTime;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     public Movie getMovie() {
         return movie;
@@ -63,7 +74,7 @@ public class Session extends BaseEntity {
         this.movie = movie;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     public Room getRoom() {
         return room;

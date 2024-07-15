@@ -11,15 +11,17 @@ public class Movie extends BaseEntity {
     private String genre;
     private int duration;
     private List<Room> rooms;
+    private List<User> users;
 
     public Movie() {
     }
 
-    public Movie(String title, String genre, int duration, List<Room> rooms) {
+    public Movie(String title, String genre, int duration, List<Room> rooms, List<User> users) {
         this.title = title;
         this.genre = genre;
         this.duration = duration;
         this.rooms = rooms;
+        this.users = users;
     }
 
     @Column(name = "title")
@@ -60,5 +62,18 @@ public class Movie extends BaseEntity {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_movies",
+            joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id",
+                    referencedColumnName = "id"))
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

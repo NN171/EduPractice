@@ -1,28 +1,22 @@
 package org.example.summerpracticesecondyear.controller;
 
-import org.example.summerpracticesecondyear.service.TicketService;
+import org.example.summerpracticesecondyear.service.impl.TicketServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ticket")
 public class TicketController {
 
-    private TicketService ticketService;
+    private final TicketServiceImpl ticketServiceImpl;
 
     @Autowired
-    public TicketController(TicketService ticketService) {
-        this.ticketService = ticketService;
+    public TicketController(TicketServiceImpl ticketServiceImpl) {
+        this.ticketServiceImpl = ticketServiceImpl;
     }
 
-    @GetMapping("/{id}")
-    public long getTicketsByMovieId(@PathVariable int movieId) {
-        return ticketService.countByMovieId(movieId);
+    @PutMapping("/{userId}/{movieId}")
+    public double refundTicket(@PathVariable Long userId, @PathVariable Long movieId) {
+        return ticketServiceImpl.refundByUserId(userId, movieId);
     }
-
 }

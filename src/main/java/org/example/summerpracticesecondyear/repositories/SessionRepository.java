@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SessionRepository extends JpaRepository<Session, Integer> {
+public interface SessionRepository extends JpaRepository<Session, Long> {
 
     @Query(value = "select s from Session s " +
             "")

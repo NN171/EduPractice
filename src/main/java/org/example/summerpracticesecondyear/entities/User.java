@@ -11,16 +11,20 @@ public class User extends BaseEntity {
     private String firstName;
     private String lastName;
     private String email;
+    private double bonusBalance;
+    private List<Movie> viewHistory;
     private List<Ticket> ticket;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, List<Ticket> ticket) {
+    public User(String firstName, String lastName, String email, List<Ticket> ticket, double bonusBalance, List<Movie> viewHistory) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.ticket = ticket;
+        this.bonusBalance = bonusBalance;
+        this.viewHistory = viewHistory;
     }
 
     @Column(name = "first_name")
@@ -30,6 +34,15 @@ public class User extends BaseEntity {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    @Column(name = "bonus_balance")
+    public double getBonusBalance() {
+        return bonusBalance;
+    }
+
+    public void setBonusBalance(double bonusBalance) {
+        this.bonusBalance = bonusBalance;
     }
 
     @Column(name = "last_name")
@@ -48,6 +61,19 @@ public class User extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "user_movie",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id",
+                    referencedColumnName = "id"))
+    public List<Movie> getViewHistory() {
+        return viewHistory;
+    }
+
+    public void setViewHistory(List<Movie> viewHistory) {
+        this.viewHistory = viewHistory;
     }
 
     @OneToMany(mappedBy = "user", targetEntity = Ticket.class,
