@@ -77,7 +77,7 @@ public class User extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "user", targetEntity = Ticket.class,
-    fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Ticket> getTicket() {
         return ticket;
     }

@@ -8,8 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Repository
 public interface TicketRepository extends BaseRepository<Ticket, Long> {
 
@@ -23,7 +21,7 @@ public interface TicketRepository extends BaseRepository<Ticket, Long> {
     @Query(value = "select t.session from Ticket t " +
             "where t.id = :ticketId")
     Session findSessionByTicketId(@Param(value = "ticketId")
-                               Long ticketId);
+                                  Long ticketId);
 
     @Query(value = "select t.user.bonusBalance from Ticket t " +
             "where t.user.id = :userId")
