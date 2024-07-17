@@ -1,8 +1,6 @@
 package org.example.summerpracticesecondyear.service.impl;
 
-import org.example.summerpracticesecondyear.dto.UserDto;
-import org.example.summerpracticesecondyear.entities.Movie;
-import org.example.summerpracticesecondyear.entities.User;
+import org.example.summerpracticesecondyear.projections.MovieType;
 import org.example.summerpracticesecondyear.repositories.MovieRepository;
 import org.example.summerpracticesecondyear.repositories.UserRepository;
 import org.example.summerpracticesecondyear.service.UserService;
@@ -22,8 +20,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Movie> selectCompilationListByUserId(Long userId) {
-        userRepo.findGenreByUserId(userId);
-        return (List<Movie>) movieRepo.findAll();
+    public List<MovieType> selectCompilationListByUserId(Long userId) {
+        String genre = userRepo.findGenreByUserId(userId);
+
+        return movieRepo.getMoviesByGenre(genre);
     }
 }

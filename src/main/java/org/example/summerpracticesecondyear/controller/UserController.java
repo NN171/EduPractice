@@ -1,6 +1,6 @@
 package org.example.summerpracticesecondyear.controller;
 
-import org.example.summerpracticesecondyear.entities.Movie;
+import org.example.summerpracticesecondyear.projections.MovieType;
 import org.example.summerpracticesecondyear.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/compilation/{userId}")
-    public List<Movie> getCompilation(@PathVariable Long userId) {
+    public List<MovieType> getCompilation(@PathVariable Long userId) {
         return userService.selectCompilationListByUserId(userId);
     }
 }

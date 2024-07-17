@@ -16,6 +16,7 @@ public interface UserRepository extends BaseRepository<User, Long> {
             "join u.viewHistory m " +
             "where u.id = :userId " +
             "group by m.genre " +
-            "order by count(m) desc")
+            "order by count(m) desc " +
+            "limit 1")
     String findGenreByUserId(@Param("userId") Long userId);
 }
