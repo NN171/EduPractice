@@ -11,4 +11,11 @@ public interface UserRepository extends BaseRepository<User, Long> {
     @Query(value = "select u.bonusBalance from User u " +
             "where u.id = :userId")
     double findBalanceByUserId(@Param("userId") Long userId);
+
+    @Query(value = "select m.genre from User u " +
+            "join u.viewHistory m " +
+            "where u.id = :userId " +
+            "group by m.genre " +
+            "order by count(m) desc")
+    String findGenreByUserId(@Param("userId") Long userId);
 }

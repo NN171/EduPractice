@@ -14,4 +14,6 @@ public interface BaseRepository<T, ID> extends Repository<T, ID> {
     <S extends T> Iterable<S> saveAll(Iterable<S> entities);
 
     Optional<T> findById(ID id);
+
+    Iterable<T> findAll();
 }

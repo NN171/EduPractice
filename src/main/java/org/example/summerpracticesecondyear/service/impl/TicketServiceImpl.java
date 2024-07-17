@@ -24,12 +24,13 @@ public class TicketServiceImpl implements TicketService {
         this.userRepo = userRepo;
     }
 
+    @Override
     public void refundByUserId(Long userId, Long ticketId) {
         Session session = ticketRepo.findSessionByTicketId(ticketId);
 
-        long timeLeft = Math.abs(ChronoUnit.MINUTES.between(session.getStartTime(), LocalDateTime.now()));
+        long timeLeft = ChronoUnit.MINUTES.between(session.getStartTime(), LocalDateTime.now());
 
-        if (!isRefund(ticketId)) {
+        if (!isRefund(ticketId) && timeLeft > 0) {
             if (timeLeft > 30) {
                 ticketRepo.refundTicketByUserIdAndTicketId(ticketId);
             } else {
@@ -38,6 +39,9 @@ public class TicketServiceImpl implements TicketService {
                 user.setBonusBalance(user.getBonusBalance() + session.getMoviePrice() * 0.8);
                 userRepo.save(user);
             }
+        }
+        else {
+            throw new TicketNotFoundException("Session expired");
         }
     }
 
@@ -48,6 +52,7 @@ public class TicketServiceImpl implements TicketService {
         return ticket.isRefund();
     }
 
+    @Override
     public double findBalanceByUserId(Long userId) {
         return userRepo.findBalanceByUserId(userId);
     }

@@ -1,7 +1,9 @@
 package org.example.summerpracticesecondyear.service;
 
-import org.example.summerpracticesecondyear.dto.UserDto;
+import org.example.summerpracticesecondyear.entities.Movie;
+
+import java.util.List;
 
 public interface UserService {
-    Double getUserBalanceByUserId(UserDto userDto);
+    List<Movie> selectCompilationListByUserId(Long UserId);
 }
