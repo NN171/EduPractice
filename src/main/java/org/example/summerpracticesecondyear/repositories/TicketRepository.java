@@ -15,17 +15,22 @@ public interface TicketRepository extends BaseRepository<Ticket, Long> {
     @Modifying
     @Query(value = "update Ticket t set t.refund = true " +
             "where t.id = :ticketId")
-    void refundTicketByUserIdAndTicketId(@Param(value = "ticketId")
+    void refundTicketByTicketId(@Param(value = "ticketId")
                                          Long ticketId);
+
+    @Query(value = "select t.refund from Ticket t " +
+            "where t.id = :ticketId")
+    boolean isRefundByTicketId(@Param("ticketId")
+                               Long ticketId);
 
     @Query(value = "select t.session from Ticket t " +
             "where t.id = :ticketId")
     Session findSessionByTicketId(@Param(value = "ticketId")
                                   Long ticketId);
 
-    @Query(value = "select t.user.bonusBalance from Ticket t " +
-            "where t.user.id = :userId")
-    double findBalanceByUserId(@Param(value = "userId")
-                               Long userId);
+    @Query(value = "select t.user.id from Ticket t " +
+            "where t.id = :ticketId")
+    Long findUserByTicketId(@Param(value = "ticketId")
+                      Long ticketId);
 
 }

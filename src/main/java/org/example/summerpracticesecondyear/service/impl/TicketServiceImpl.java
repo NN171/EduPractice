@@ -28,28 +28,37 @@ public class TicketServiceImpl implements TicketService {
     public void refundByUserId(Long userId, Long ticketId) {
         Session session = ticketRepo.findSessionByTicketId(ticketId);
 
-        long timeLeft = ChronoUnit.MINUTES.between(session.getStartTime(), LocalDateTime.now());
+        long timeLeft = ChronoUnit.MINUTES.between(LocalDateTime.now(), session.getStartTime());
 
-        if (!isRefund(ticketId) && timeLeft > 0) {
+        if (!isRefund(ticketId, userId) && timeLeft > 0) {
             if (timeLeft > 30) {
-                ticketRepo.refundTicketByUserIdAndTicketId(ticketId);
+                ticketRepo.refundTicketByTicketId(ticketId);
             } else {
-                ticketRepo.refundTicketByUserIdAndTicketId(ticketId);
+                ticketRepo.refundTicketByTicketId(ticketId);
                 User user = userRepo.findById(userId).orElseThrow(() -> new UserNotFoundException("User doesn't exist"));
                 user.setBonusBalance(user.getBonusBalance() + session.getMoviePrice() * 0.8);
                 userRepo.save(user);
             }
-        }
-        else {
+        } else {
             throw new TicketNotFoundException("Session expired");
         }
     }
 
     @Override
-    public boolean isRefund(Long ticketId) {
+    public boolean isRefund(Long ticketId, Long userId) {
         Ticket ticket = ticketRepo.findById(ticketId).orElseThrow(() -> new TicketNotFoundException("Ticket doesn't exist"));
-
+        if (ticketRepo.isRefundByTicketId(ticketId) || !isMatch(userId, ticketId)) {
+            throw new TicketNotFoundException("Ticket is already refunded");
+        }
         return ticket.isRefund();
+    }
+
+    @Override
+    public boolean isMatch(Long userId, Long ticketId) {
+        if (!ticketRepo.findUserByTicketId(ticketId).equals(userId)){
+            throw new TicketNotFoundException("User has no such ticket");
+        }
+        return true;
     }
 
     @Override
