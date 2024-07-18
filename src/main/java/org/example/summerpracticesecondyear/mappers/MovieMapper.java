@@ -1,10 +1,8 @@
 package org.example.summerpracticesecondyear.mappers;
 
 import org.example.summerpracticesecondyear.dto.MovieDto;
-import org.example.summerpracticesecondyear.dto.TicketDto;
 import org.example.summerpracticesecondyear.entities.BaseEntity;
 import org.example.summerpracticesecondyear.entities.Movie;
-import org.example.summerpracticesecondyear.entities.Ticket;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 

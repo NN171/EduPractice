@@ -18,7 +18,7 @@ public interface TicketRepository extends BaseRepository<Ticket, Long> {
     @Query(value = "update Ticket t set t.refund = true " +
             "where t.id = :ticketId")
     void refundTicketByTicketId(@Param(value = "ticketId")
-                                         Long ticketId);
+                                Long ticketId);
 
     @Query(value = "select t.refund from Ticket t " +
             "where t.id = :ticketId")
@@ -33,7 +33,7 @@ public interface TicketRepository extends BaseRepository<Ticket, Long> {
     @Query(value = "select t.user.id from Ticket t " +
             "where t.id = :ticketId")
     Long findUserByTicketId(@Param(value = "ticketId")
-                      Long ticketId);
+                            Long ticketId);
 
     @Query(value = "select t.user.id from Ticket t " +
             "where t.seat = :seat and " +
@@ -59,5 +59,5 @@ public interface TicketRepository extends BaseRepository<Ticket, Long> {
     @Query(value = "select t from Ticket t " +
             "where t.user.id = :userId")
     List<Ticket> findTicketsByUserId(@Param(value = "userId")
-                                         Long userId);
+                                     Long userId);
 }
