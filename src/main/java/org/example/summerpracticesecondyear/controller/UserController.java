@@ -1,11 +1,10 @@
 package org.example.summerpracticesecondyear.controller;
 
+import org.example.summerpracticesecondyear.dto.TicketInfoDto;
 import org.example.summerpracticesecondyear.projections.MovieType;
+import org.example.summerpracticesecondyear.projections.TicketType;
 import org.example.summerpracticesecondyear.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +21,11 @@ public class UserController {
     @GetMapping("/compilation/{userId}")
     public List<MovieType> getCompilation(@PathVariable Long userId) {
         return userService.selectCompilationListByUserId(userId);
+    }
+
+    @GetMapping("/booking")
+    public List<TicketType> ticketBooking(@RequestBody TicketInfoDto ticketInfoDto) {
+        userService.ticketOrdering(ticketInfoDto);
+        return userService.findTicketsByUserId(ticketInfoDto.getUserId());
     }
 }

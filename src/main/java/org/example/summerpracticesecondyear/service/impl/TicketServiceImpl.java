@@ -55,7 +55,8 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public boolean isMatch(Long userId, Long ticketId) {
-        if (!ticketRepo.findUserByTicketId(ticketId).equals(userId)){
+        Long dbUserId = ticketRepo.findUserByTicketId(ticketId);
+        if (dbUserId == null || !dbUserId.equals(userId)){
             throw new TicketNotFoundException("User has no such ticket");
         }
         return true;

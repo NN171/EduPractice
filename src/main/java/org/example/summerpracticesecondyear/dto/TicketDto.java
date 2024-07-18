@@ -6,6 +6,7 @@ public class TicketDto {
     private int seat;
     private boolean refund;
 
+
     public TicketDto() {
     }
 

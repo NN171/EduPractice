@@ -29,4 +29,25 @@ public class ExceptionAdvice {
     String sessionNotFoundExceptionHandler(SessionNotFoundException ex) {
         return ex.getMessage();
     }
+
+    @ResponseBody
+    @ExceptionHandler(MovieNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String movieNotFoundExceptionHandler(MovieNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(RoomNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String roomNotFoundExceptionHandler(RoomNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(SeatException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String seatIsReserved(SeatException ex) {
+        return ex.getMessage();
+    }
 }
