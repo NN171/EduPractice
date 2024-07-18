@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<MovieDto> selectCompilationListByUserId(Long userId) {
         String genre = userRepo.findGenreByUserId(userId);
-        return MovieMapper.movieClassToMovieDto(movieRepo.getMoviesByGenre(genre));
+        return MovieMapper.movieClassToMovieDto(movieRepo.getMoviesByGenre(genre, userId));
     }
 
     @Override

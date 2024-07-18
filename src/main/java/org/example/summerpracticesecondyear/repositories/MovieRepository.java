@@ -11,7 +11,8 @@ import java.util.List;
 public interface MovieRepository extends BaseRepository<Movie, Long> {
 
     @Query(value = "select m from Movie m " +
-            "where m.genre = :genre")
-    List<Movie> getMoviesByGenre(@Param(value = "genre")
-                                 String genre);
+            "join m.users u " +
+            "where m.genre = :genre and u.id <> :userId")
+    List<Movie> getMoviesByGenre(@Param(value = "genre") String genre,
+                                 @Param(value = "userId") Long userId);
 }
