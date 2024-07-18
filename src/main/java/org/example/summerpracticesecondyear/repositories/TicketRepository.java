@@ -2,7 +2,6 @@ package org.example.summerpracticesecondyear.repositories;
 
 import org.example.summerpracticesecondyear.entities.Session;
 import org.example.summerpracticesecondyear.entities.Ticket;
-import org.example.summerpracticesecondyear.projections.TicketType;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -57,10 +56,8 @@ public interface TicketRepository extends BaseRepository<Ticket, Long> {
     void updateUserId(@Param(value = "ticketId") Long ticketId,
                       @Param(value = "userId") Long userId);
 
-    @Query(value = "select t.seat as seat, t.movie.title as title," +
-            " t.movie.genre as genre" +
-            " from Ticket t " +
+    @Query(value = "select t from Ticket t " +
             "where t.user.id = :userId")
-    List<TicketType> findTicketsByUserId(@Param(value = "userId")
+    List<Ticket> findTicketsByUserId(@Param(value = "userId")
                                          Long userId);
 }

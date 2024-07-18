@@ -1,8 +1,8 @@
 package org.example.summerpracticesecondyear.controller;
 
+import org.example.summerpracticesecondyear.dto.MovieDto;
+import org.example.summerpracticesecondyear.dto.TicketDto;
 import org.example.summerpracticesecondyear.dto.TicketInfoDto;
-import org.example.summerpracticesecondyear.projections.MovieType;
-import org.example.summerpracticesecondyear.projections.TicketType;
 import org.example.summerpracticesecondyear.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +19,12 @@ public class UserController {
     }
 
     @GetMapping("/compilation/{userId}")
-    public List<MovieType> getCompilation(@PathVariable Long userId) {
+    public List<MovieDto> getCompilation(@PathVariable Long userId) {
         return userService.selectCompilationListByUserId(userId);
     }
 
     @GetMapping("/booking")
-    public List<TicketType> ticketBooking(@RequestBody TicketInfoDto ticketInfoDto) {
+    public List<TicketDto> ticketBooking(@RequestBody TicketInfoDto ticketInfoDto) {
         userService.ticketOrdering(ticketInfoDto);
         return userService.findTicketsByUserId(ticketInfoDto.getUserId());
     }

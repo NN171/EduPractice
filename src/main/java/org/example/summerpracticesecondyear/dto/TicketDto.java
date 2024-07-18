@@ -2,26 +2,17 @@ package org.example.summerpracticesecondyear.dto;
 
 public class TicketDto {
 
-    private Long id;
     private int seat;
-    private boolean refund;
-
+    private String title;
+    private String genre;
 
     public TicketDto() {
     }
 
-    public TicketDto(Long id, int seat, boolean refund) {
-        this.id = id;
+    public TicketDto(int seat, String title, String genre) {
         this.seat = seat;
-        this.refund = refund;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.title = title;
+        this.genre = genre;
     }
 
     public int getSeat() {
@@ -32,11 +23,19 @@ public class TicketDto {
         this.seat = seat;
     }
 
-    public boolean isRefund() {
-        return refund;
+    public String getTitle() {
+        return title;
     }
 
-    public void setRefund(boolean refund) {
-        this.refund = refund;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }
