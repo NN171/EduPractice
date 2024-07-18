@@ -14,5 +14,5 @@ public interface MovieRepository extends BaseRepository<Movie, Long> {
     @Query(value = "select m.id as id, m.title as title, m.duration as duration, m.genre as genre from Movie m " +
             "where m.genre = :genre")
     List<MovieType> getMoviesByGenre(@Param(value = "genre")
-                                 String genre);
+                                     String genre);
 }

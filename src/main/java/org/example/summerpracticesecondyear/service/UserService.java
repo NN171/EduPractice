@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface UserService {
     List<MovieType> selectCompilationListByUserId(Long UserId);
+
     void ticketOrdering(TicketInfoDto ticketInfoDto);
+
     boolean seatIsAvailable(int seat, Long sessionId, Long movieId);
+
     List<TicketType> findTicketsByUserId(Long userId);
 }

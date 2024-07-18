@@ -1,11 +1,14 @@
 package org.example.summerpracticesecondyear.service.impl;
 
 import org.example.summerpracticesecondyear.dto.TicketInfoDto;
-import org.example.summerpracticesecondyear.entities.*;
-import org.example.summerpracticesecondyear.exceptions.*;
+import org.example.summerpracticesecondyear.entities.Ticket;
+import org.example.summerpracticesecondyear.exceptions.SeatException;
+import org.example.summerpracticesecondyear.exceptions.TicketNotFoundException;
 import org.example.summerpracticesecondyear.projections.MovieType;
 import org.example.summerpracticesecondyear.projections.TicketType;
-import org.example.summerpracticesecondyear.repositories.*;
+import org.example.summerpracticesecondyear.repositories.MovieRepository;
+import org.example.summerpracticesecondyear.repositories.TicketRepository;
+import org.example.summerpracticesecondyear.repositories.UserRepository;
 import org.example.summerpracticesecondyear.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +40,12 @@ public class UserServiceImpl implements UserService {
         Long sessionId = ticketInfoDto.getSessionId();
         Long movieId = ticketInfoDto.getMovieId();
 
-        if(seatIsAvailable(seat, sessionId, movieId)) {
+        if (seatIsAvailable(seat, sessionId, movieId)) {
             Long ticketId = ticketRepo.findTicketIdForOrderingService(seat, sessionId, movieId);
             Ticket ticket = ticketRepo.findById(ticketId).orElseThrow(() -> new TicketNotFoundException("Ticket doesn't exist"));
             ticketRepo.updateUserId(ticketId, ticketInfoDto.getUserId());
             ticketRepo.save(ticket);
-        }
-        else throw new SeatException("Seat doesn't exist");
+        } else throw new SeatException("Seat doesn't exist");
     }
 
     @Override
